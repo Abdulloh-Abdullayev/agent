@@ -1,3 +1,4 @@
+import 'package:agent/ui/pages/customer_data_page/customer_data_page.dart';
 import 'package:agent/ui/pages/order_page/order_page.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -69,5 +70,6 @@ class AppModule extends Module {
   List<ModularRoute> get routes => [
         ModuleRoute("/", module: HomePageModule()),
         ModuleRoute("/", module: OrderPageModule()),
+        ModuleRoute("/", module: CustomerDataPageModule()),
       ];
 }

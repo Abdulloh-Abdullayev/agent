@@ -55,6 +55,21 @@ class $AssetsImagesIconsGen {
   SvgGenImage get communicationActive =>
       const SvgGenImage('assets/images/icons/communication_active.svg');
 
+  /// File path: assets/images/icons/edite.svg
+  SvgGenImage get edite => const SvgGenImage('assets/images/icons/edite.svg');
+
+  /// File path: assets/images/icons/exchange.svg
+  SvgGenImage get exchange =>
+      const SvgGenImage('assets/images/icons/exchange.svg');
+
+  /// File path: assets/images/icons/foto_otchot.svg
+  SvgGenImage get fotoOtchot =>
+      const SvgGenImage('assets/images/icons/foto_otchot.svg');
+
+  /// File path: assets/images/icons/history.svg
+  SvgGenImage get history =>
+      const SvgGenImage('assets/images/icons/history.svg');
+
   /// File path: assets/images/icons/interesting.svg
   SvgGenImage get interesting =>
       const SvgGenImage('assets/images/icons/interesting.svg');
@@ -71,6 +86,12 @@ class $AssetsImagesIconsGen {
   SvgGenImage get notification =>
       const SvgGenImage('assets/images/icons/notification.svg');
 
+  /// File path: assets/images/icons/obmen.svg
+  SvgGenImage get obmen => const SvgGenImage('assets/images/icons/obmen.svg');
+
+  /// File path: assets/images/icons/otkaz.svg
+  SvgGenImage get otkaz => const SvgGenImage('assets/images/icons/otkaz.svg');
+
   /// File path: assets/images/icons/profile.svg
   SvgGenImage get profile =>
       const SvgGenImage('assets/images/icons/profile.svg');
@@ -78,6 +99,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/profile_active.svg
   SvgGenImage get profileActive =>
       const SvgGenImage('assets/images/icons/profile_active.svg');
+
+  /// File path: assets/images/icons/refresh.svg
+  SvgGenImage get refresh =>
+      const SvgGenImage('assets/images/icons/refresh.svg');
 
   /// File path: assets/images/icons/saved_ones.svg
   SvgGenImage get savedOnes =>
@@ -97,6 +122,10 @@ class $AssetsImagesIconsGen {
   /// File path: assets/images/icons/telephone_button.svg
   SvgGenImage get telephoneButton =>
       const SvgGenImage('assets/images/icons/telephone_button.svg');
+
+  /// File path: assets/images/icons/zadachi.svg
+  SvgGenImage get zadachi =>
+      const SvgGenImage('assets/images/icons/zadachi.svg');
 }
 
 class Assets {
