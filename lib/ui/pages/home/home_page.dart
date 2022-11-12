@@ -1,3 +1,5 @@
+import 'package:agent/ui/pages/main_page/bloc/main_cubit.dart';
+import 'package:agent/ui/pages/main_page/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,7 +11,7 @@ import 'package:agent/ui/pages/home/widgets/app_navigation_bar.dart';
 import 'package:agent/ui/pages/home/widgets/app_navigation_bar_item.dart';
 import 'package:agent/ui/pages/profile_page/profile_page.dart';
 import 'package:agent/ui/pages/saved_ones_page/saved_ones_page.dart';
-import 'package:agent/ui/pages/search_page/search_page.dart';
+import 'package:uikit/uikit.dart';
 
 class HomePageModule extends Module {
   @override
@@ -26,7 +28,14 @@ class HomePageModule extends Module {
           (i) => AppNavigationBloc(),
           onDispose: (value) => value.close(),
         ),
-      ];
+
+    Bind<MainCubit>(
+          (i) => MainCubit(),
+      onDispose: (value) => value.close(),
+    ),
+
+
+  ];
 }
 
 class HomePage extends StatelessWidget {
@@ -40,81 +49,83 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<AppNavigationBloc, AppNavigationState>(
         bloc: bloc,
         builder: (context, state) {
-          return Scaffold(
-            extendBody: true,
-            body: bodyBuilder(state.appNavigationType, context),
-            bottomNavigationBar: AppNavigationBar(
-              children: [
-                AppNavigationBarItem(
-                  onPressed: () {
-                    bloc.add(
-                      const AppNavigationChanged(
-                        appNavigationType: AppNavigationType.SEARCH,
-                      ),
-                    );
-                  },
-                  icon: Assets.images.icons.search.svg(),
-                  iconOnTap: Assets.images.icons.searchActive.svg(),
-                  title: "Qidirish",
-                  isActive: state.appNavigationType == AppNavigationType.SEARCH,
-                ),
-                AppNavigationBarItem(
-                  onPressed: () {
-                    bloc.add(
-                      const AppNavigationChanged(
-                        appNavigationType: AppNavigationType.SAVED,
-                      ),
-                    );
-                  },
-                  icon: Assets.images.icons.savedOnes.svg(),
-                  iconOnTap: Assets.images.icons.savedOnesActive.svg(),
-                  title: "Saqlanganlar",
-                  isActive: state.appNavigationType == AppNavigationType.SAVED,
+          return SafeArea(
+            child: Scaffold(
+              extendBody: true,
+              body: bodyBuilder(state.appNavigationType, context),
+              bottomNavigationBar: AppNavigationBar(
+                children: [
+                  AppNavigationBarItem(
+                    onPressed: () {
+                      bloc.add(
+                        const AppNavigationChanged(
+                          appNavigationType: AppNavigationType.MAIN,
+                        ),
+                      );
+                    },
+                    icon: Assets.images.icons.home.svg(),
+                    iconOnTap: Assets.images.icons.homeActive.svg(),
+                    title: "Главная",
+                    isActive: state.appNavigationType == AppNavigationType.MAIN,
+                  ),
+                  AppNavigationBarItem(
+                    onPressed: () {
+                      bloc.add(
+                        const AppNavigationChanged(
+                          appNavigationType: AppNavigationType.VISITS,
+                        ),
+                      );
+                    },
+                    icon: Assets.images.icons.location.svg(),
+                    iconOnTap: Assets.images.icons.locationActive.svg(),
+                    title: "Визиты",
+                    isActive: state.appNavigationType == AppNavigationType.VISITS,
 
-                ),
-                AppNavigationBarItem(
-                  onPressed: () {
-                    bloc.add(
-                      const AppNavigationChanged(
-                        appNavigationType: AppNavigationType.INTERESTING,
-                      ),
-                    );
-                  },
-                  icon: Assets.images.icons.interesting.svg(),
-                  iconOnTap: Assets.images.icons.interestingActive.svg(),
-                  title: "Qiziqarli",
-                  isActive:
-                      state.appNavigationType == AppNavigationType.INTERESTING,
-                ),
-                AppNavigationBarItem(
-                  onPressed: () {
-                    bloc.add(
-                      const AppNavigationChanged(
-                        appNavigationType: AppNavigationType.COMMUNICATION,
-                      ),
-                    );
-                  },
-                  icon: Assets.images.icons.communication.svg(),
-                  iconOnTap: Assets.images.icons.communicationActive.svg(),
-                  title: "Profil",
-                  isActive: state.appNavigationType ==
-                      AppNavigationType.COMMUNICATION,
-                ),
-                AppNavigationBarItem(
-                  onPressed: () {
-                    bloc.add(
-                      const AppNavigationChanged(
-                        appNavigationType: AppNavigationType.PROFILE,
-                      ),
-                    );
-                  },
-                  icon: Assets.images.icons.profile.svg(),
-                  iconOnTap: Assets.images.icons.profileActive.svg(),
-                  title: "Qidirish",
-                  isActive:
-                      state.appNavigationType == AppNavigationType.PROFILE,
-                )
-              ],
+                  ),
+                  AppNavigationBarItem(
+                    onPressed: () {
+                      bloc.add(
+                        const AppNavigationChanged(
+                          appNavigationType: AppNavigationType.REPORT,
+                        ),
+                      );
+                    },
+                    icon: Assets.images.icons.pieChart.svg(),
+                    iconOnTap: Assets.images.icons.pieChartActive.svg(),
+                    title: "Отчёт",
+                    isActive:
+                        state.appNavigationType == AppNavigationType.REPORT,
+                  ),
+                  AppNavigationBarItem(
+                    onPressed: () {
+                      bloc.add(
+                        const AppNavigationChanged(
+                          appNavigationType: AppNavigationType.DRAFT,
+                        ),
+                      );
+                    },
+                    icon: Assets.images.icons.draft.svg(),
+                    iconOnTap: Assets.images.icons.draftActive.svg(),
+                    title: "Черновик",
+                    isActive: state.appNavigationType ==
+                        AppNavigationType.DRAFT,
+                  ),
+                  AppNavigationBarItem(
+                    onPressed: () {
+                      bloc.add(
+                        const AppNavigationChanged(
+                          appNavigationType: AppNavigationType.POINTS,
+                        ),
+                      );
+                    },
+                    icon: Assets.images.icons.place.svg(),
+                    iconOnTap: Assets.images.icons.placeActive.svg(),
+                    title: "Тор. точки",
+                    isActive:
+                        state.appNavigationType == AppNavigationType.POINTS,
+                  )
+                ],
+              ),
             ),
           );
         });
@@ -125,15 +136,15 @@ class HomePage extends StatelessWidget {
     BuildContext context,
   ) {
     switch (appNavigationType) {
-      case AppNavigationType.SEARCH:
-        return const SearchPage();
-      case AppNavigationType.SAVED:
+      case AppNavigationType.MAIN:
+        return const MainPage();
+      case AppNavigationType.VISITS:
         return const SavedOnesPage();
-      case AppNavigationType.INTERESTING:
+      case AppNavigationType.REPORT:
         return const InterestingPage();
-      case AppNavigationType.COMMUNICATION:
+      case AppNavigationType.DRAFT:
         return const CommunicationPage();
-      case AppNavigationType.PROFILE:
+      case AppNavigationType.POINTS:
         return const ProfilePage();
       default:
         return Container();
